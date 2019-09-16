@@ -23,6 +23,7 @@
                 <th scope="col">Date</th>
                 <th scope="col">Tractor Name</th>
                 <th scope="col">Processed Area</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -36,6 +37,14 @@
                     <td>
                         The area of the processed land is {{ $processed_field->processed_area }} out of {{ $processed_field->field->area }},
                         using {{ $processed_field->no_of_tractors }} Tractors
+                    </td>
+                    <td>
+                    <td><?php  $user = auth()->user(); ?>
+
+                        @if($user->id == $processed_field->user_id)
+                            <a href="{{ route('paf.delete', ['id' => $processed_field->id]) }}" class="btn btn-danger">Delete</a>
+                        @endif
+                    </td>
                     </td>
                 </tr>
             @endforeach

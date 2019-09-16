@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
+
+Route::get('/welcome', function () {
+    return view('welcome');
+})->name('welcome');
+
 /* Field routes*/
 Route::get('/addField', function () {
     return view('new-field');
@@ -43,9 +51,13 @@ Route::get('/processing_a_field', [
     'uses' => 'processed_fieldsController@create',
     'as' => 'paf-create',
 ]);
-Route::post('/createpaf', [
+Route::post('/create-paf', [
     'uses' => 'processed_fieldsController@store',
     'as' => 'store.paf',
+]);
+Route::get('/delete-paf/{id}', [
+    'uses' => 'processed_fieldsController@destroy',
+    'as' => 'paf.delete',
 ]);
 
 /*Reports routes*/
@@ -58,4 +70,23 @@ Route::post('/filter-reports', [
     'as' => 'filter',
 ]);
 
+/*auth*/
+Route::get('/logout', [
+    'uses' => 'Controller@getLogout',
+    'as' => 'logout'
+]);
+
+Route::get('/account', [
+    'uses' => 'UserController@getAccount',
+    'as' => 'account'
+]);
+Route::post('/signup', [
+    'uses' => 'Auth\RegisterController@create',
+    'as' => 'signup'
+]);
+
+Route::post('/signin', [
+    'uses' => 'Auth\LoginController@login',
+    'as' => 'signin'
+]);
 

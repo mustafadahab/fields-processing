@@ -40,7 +40,8 @@ return view('new-processing-field',  compact('fields_list','tractor_list'));
     public function store(Request $request)
     {
         $fields_list=Field::find($request['field']);
-        /*die(var_dump($fields_list->area));*/
+        $user = auth()->user();
+
         $this->validate($request, [
             'tractor' => 'required',
             'field' => 'required',
@@ -51,6 +52,7 @@ return view('new-processing-field',  compact('fields_list','tractor_list'));
         $tractor = new Processed_field();
         $tractor->tractor_id = $request['tractor'];
         $tractor->field_id = $request['field'];
+        $tractor->user_id = $user->id;
         $tractor->added_on = $request['entered_date'];
         $tractor->no_of_tractors = $request['number_of_tractors'];
         $tractor->processed_area = $request['processed_area'];
@@ -62,4 +64,13 @@ return view('new-processing-field',  compact('fields_list','tractor_list'));
     }
 
 
+    public function destroy($id)
+    {
+        $processed_field = Processed_field::where('id', $id)->first();
+        if (auth()->user()->id != $processed_field->user_id) {
+            return redirect()->back();
+        }
+        $processed_field->delete();
+        return redirect()->route('display-reports')->with(['message' => 'Successfully deleted!']);
+    }
 }

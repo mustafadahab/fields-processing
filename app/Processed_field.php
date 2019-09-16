@@ -14,4 +14,8 @@ class Processed_field extends Model
     {
         return $this->belongsTo('App\Tractor','tractor_id');
     }
+    public function creator()
+    {
+        return $this->belongsTo('App\User','user_id');
+    }
 }
