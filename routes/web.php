@@ -58,17 +58,4 @@ Route::post('/filter-reports', [
     'as' => 'filter',
 ]);
 
-/*Route::post('/filter-by-name', [
-    'uses' => 'reportsController@name_filter',
-    'as' => 'name.filter',
-]);
-Route::post('/filter-by-date', [
-    'uses' => 'reportsController@date_filter',
-    'as' => 'date.filter',
-]);
-Route::post('/filter-by-culture', [
-    'uses' => 'reportsController@culture_filter',
-    'as' => 'culture.filter',
-]);*/
-
 

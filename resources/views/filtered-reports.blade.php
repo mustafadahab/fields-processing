@@ -100,13 +100,4 @@
 
         </table>
     </div>
-
-    {{--<form action="{{ route('filter') }}" method="post">
-        <div class="form-group {{ $errors->has('field_name') ? 'has-error' : '' }}">
-            <label for="field_name">Field Name</label>
-            <input class="form-control" type="text" name="field_name" id="field_name" value="{{ Request::old('field_name') }}">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <input type="hidden" name="_token" value="{{ Session::token() }}">
-    </form>--}}
 @endsection

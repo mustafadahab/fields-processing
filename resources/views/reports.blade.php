@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Add New Field
+    Filtered Reports
 @endsection
 
 @section('content')
@@ -13,10 +13,6 @@
         </div>
 
     </div>
-    <?php
-
-   /* var_dump($processed_field);*/
-    ?>
     <div class="table-responsive-md">
         <table class="table">
             <thead>
