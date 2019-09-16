@@ -16,3 +16,11 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/*get all fields reports*/
+Route::get('reports','reportsController@APIreports' );
+
+
+/*get single field reports*/
+Route::get('report/{id}','reportsController@APIreport');
+

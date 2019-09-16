@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Processed_field;
+use App\Http\Resources\Processed_field as Processed_fieldResource;
 
 
 class reportsController extends Controller
@@ -82,5 +83,22 @@ class reportsController extends Controller
 
     }
 
+    /**************** API functions ***************/
+        /**
+         * Display a listing of the resource for the api.
+         *
+         * @return \Illuminate\Http\Response
+         */
+    public function APIreports()
+    {
+        $processed_fields= Processed_field::with('field','tractor')->paginate(15);
 
+        return Processed_fieldResource::collection($processed_fields);
+    }
+    /*get single field report*/
+    public function APIreport($id)
+    {
+        $processed_fields= Processed_field::where('id', $id)->with('field','tractor')->get();
+        return Processed_fieldResource::collection($processed_fields);
+    }
 }
