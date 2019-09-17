@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+<?php  $user = auth()->user(); ?>
 @section('title')
     Filtered Reports
 @endsection
@@ -39,12 +39,11 @@
                         using {{ $processed_field->no_of_tractors }} Tractors
                     </td>
                     <td>
-                    <td><?php  $user = auth()->user(); ?>
 
-                        @if($user->id == $processed_field->user_id)
-                            <a href="{{ route('paf.delete', ['id' => $processed_field->id]) }}" class="btn btn-danger">Delete</a>
+
+                        @if(($user->id == $processed_field->user_id) || ($user->isAdmin))
+                            <a href="{{ route('paf.delete', ['id' => $processed_field->id]) }}" onclick="return confirm('Are you usre')" class="btn btn-danger">Delete</a>
                         @endif
-                    </td>
                     </td>
                 </tr>
             @endforeach
